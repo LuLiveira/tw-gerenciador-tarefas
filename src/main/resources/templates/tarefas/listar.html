@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Gerenciador de Tarefas - listagem</title>
+    <link rel="stylesheet" href="/webjars/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+
+        <div th:replace="fragmentos/fragmentos :: cabecalho">
+        </div>
+        <div class="container">
+            <h3>Listagem de Tarefas</h3>
+
+            <a href="/tarefas/inserir" class="btn btn-success">Inserir nova tarefa</a>
+
+            <!-- Fazendo um for each -->
+            <div th:each="tarefa: ${tarefas}" style="margin-top: 10px;">
+                <div class="card bg-light mb-3">
+                    <!-- Pegando o titulo a partir do for each anterior-->
+                    <div class="card-header" th:text="${tarefa.getTitulo()}"></div>
+
+                    <div class="card-body">
+                        <!-- Pegando a descrição a partir do for each anterior-->
+                        <p class="card-text" th:text="${tarefa.getDescricao()}"></p>
+
+                        <!-- Mostrando a data formatada utilizando Helper(#) dates -->
+                        <p class="card-text" th:text="${'Data de expiração: ' + #dates.format(tarefa.getDataExpiracao(), 'dd/MM/yyyy')}"></p>
+                    </div>
+                    <div class="card-footer bg-light">
+                        <p>
+                            <a th:href="@{/tarefas/alterar/{id}(id=${tarefa.id})}">Alterar</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="/webjars/jquery/3.4.1/jquery.min.js"> </script>
+        <script src="/webjars/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>
