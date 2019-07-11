@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>Gerenciador de Tarefas - Login</title>
+        <link rel="stylesheet" href="/webjars/bootstrap/4.3.1/css/bootstrap.min.css">
+    </head>
+    <body>
+
+        <!-- ** Cabeçalho -->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand" href="#">Gerenciador de Tarefas</a>
+        </nav>
+
+        <div class="container">
+            <h3 style="margin-left: 15px">Login</h3>
+
+            <!-- Associando com o objeto tarefa criado no método inserir do TarefasController -->
+            <form action="/login" method="post" class="form-signin">
+                <div class="form-group">
+                    <div class="col-md-9">
+                        <input type="text" class="form-control" placeholder="E-mail" name="email">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-9">
+                        <input type="password" class="form-control" placeholder="Senha" name="senha">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary" style="margin-left: 15px">Login!</button>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-9">
+                        <div class="alert alert-danger" role="alert" th:if="${param.error}">Não foi possível fazer o login
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <span>Não possui conta? <a href="/registration">Registre-se aqui!</a></span>
+                </div>
+            </form>
+        </div>
+
+        <script src="/webjars/jquery/3.4.1/jquery.min.js"> </script>
+        <script src="/webjars/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    </body>
+</html>

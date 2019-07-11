@@ -26,10 +26,14 @@
 
                         <!-- Mostrando a data formatada utilizando Helper(#) dates -->
                         <p class="card-text" th:text="${'Data de expiração: ' + #dates.format(tarefa.getDataExpiracao(), 'dd/MM/yyyy')}"></p>
+                        <p class="card-text" style="color:green;" th:if="${tarefa.dataExpiracao.after(new java.util.Date())}">Em dia</p>
+                        <p class="card-text" style="color:red;" th:if="${tarefa.dataExpiracao.before(new java.util.Date())}">Atrasada</p>
                     </div>
                     <div class="card-footer bg-light">
                         <p>
-                            <a th:href="@{/tarefas/alterar/{id}(id=${tarefa.id})}">Alterar</a>
+                            <a th:href="@{/tarefas/alterar/{id}(id=${tarefa.id})}">Alterar</a> |
+                            <a th:href="@{/tarefas/excluir/{id}(id=${tarefa.id})}">Excluir</a> |
+                            <a th:if="${!tarefa.concluida}" th:href="@{/tarefas/concluir/{id}(id=${tarefa.id})}">Concluir</a>
                         </p>
                     </div>
                 </div>
