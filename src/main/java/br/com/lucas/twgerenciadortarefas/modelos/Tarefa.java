@@ -32,6 +32,10 @@ public class Tarefa {
     @Column(name = "tar_concluida", nullable = false)
     private Boolean concluida = false;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = " usr_id")
+    private Usuario usuario;
+
     public Tarefa() {
     }
 
@@ -80,5 +84,13 @@ public class Tarefa {
 
     public void setConcluida(Boolean concluida) {
         this.concluida = concluida;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 }
